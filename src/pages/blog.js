@@ -19,7 +19,7 @@ const Blog = () => (
                 },
                 url: 'www.example.com/next-seo-blog',
                 images: {
-                    url: 'https://www.test.ie/images/cover.jpg',
+                    url: 'https://tse2.mm.bing.net/th?id=OIP.z_uvlB3uksP_j1V1xjlm0AHaEN&pid=Api&P=0',
                     width: 850,
                     height: 650,
                     alt: 'Photo of text',
