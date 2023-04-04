@@ -1,7 +1,9 @@
 import { NextSeo } from "next-seo";
+import { getToken,getPreview } from "@/utils/callApi";
 
 const Blog = ({ resData }) => {
-  console.log("resDta", resData);
+  const imgUrl =  resData.hoote.files[0].thumbnail
+  console.log("imgUrl", imgUrl)
   return (
     <>
       <NextSeo
@@ -9,20 +11,10 @@ const Blog = ({ resData }) => {
         description="Next SEO packages simplifies the SEO management in Next Apps with less configurations"
         canonical="www.example.com/next-seo-blog"
         openGraph={{
-          type: "article",
-          article: {
-            publishedTime: "2022-06-21T23:04:13Z",
-            modifiedTime: "2022-01-21T18:04:43Z",
-            authors: [
-              "https://www.example.com/authors/@firstnameA-lastnameA",
-              "https://www.example.com/authors/@firstnameB-lastnameB",
-            ],
-            tags: ["Tag A", "Tag B", "Tag C"],
-          },
           url: "www.example.com/next-seo-blog",
           images: [
             {
-              url: resData.image,
+              url: imgUrl,
             },
           ],
           site_name: "Next Blog",
@@ -36,9 +28,10 @@ const Blog = ({ resData }) => {
 export default Blog;
 
 export const getServerSideProps = async (ctx) => {
-  const res = await fetch(`https://fakestoreapi.com/products/${ctx.query.id}`);
-  const resData = await res.json();
- // const resData = json.data;
+  const finalToken = await getToken();
+  const res = await getPreview(ctx.query.id, finalToken);
+  const json = await res.json();
+  const resData = json.data;
   return {
     props: {
       resData,
