@@ -1,5 +1,5 @@
 import { NextSeo } from "next-seo";
-import { getToken,getPreview } from "@/utils/callApi";
+import { getToken,getPreview } from "../../utils/callApi";
 
 const Blog = ({ resData }) => {
   const imgUrl =  resData.hoote.files[0].thumbnail
